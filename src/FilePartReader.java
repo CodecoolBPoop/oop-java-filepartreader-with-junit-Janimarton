@@ -3,20 +3,20 @@ public class FilePartReader {
     public FilePartReader() {
     }
 
-    public void setup(String filePath, Integer fromLine, Integer toLine){
+    public void setup(String filePath, Integer fromLine, Integer toLine) {
 
         // TODO: 2018.11.19. if: toLine is smaller than fromLine throw: IllegalArgumentException
         // TODO: 2018.11.19. if fromLine is smaller than 1 throw: IllegalArgumentException
 
     }
 
-    public String read(){
+    public String read() {
         // TODO: 2018.11.19. opens the file on filePath , and gives back it's content as a String
 
         return "Something String to return";
     }
 
-    public String readLines(){
+    public static String readLines() {
 
         /*
         TODO: 2018.11.19. reads the file with read ()
