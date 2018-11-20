@@ -27,7 +27,7 @@ public class FilePartReader {
         int lineCounter = 0;
         while ((line = bufferedReader.readLine()) != null && toLine >= fromLine) {
             lineCounter++;
-            if (lineCounter > fromLine){
+            if (lineCounter > fromLine) {
                 System.out.println(line + "\n");
             }
         }
@@ -35,10 +35,25 @@ public class FilePartReader {
 
     }
 
-    public String read() {
-        // TODO: 2018.11.19. opens the file on filePath , and gives back it's content as a String
+    public String read(String filePath) throws IOException {
+        // there was a task: 2018.11.19. opens the file on filePath , and gives back it's content as a String
 
-        return "Something String to return";
+
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
+        String line = null;
+        StringBuilder stringBuilder = new StringBuilder();
+        String ls = System.getProperty("line.separator");
+
+        try {
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
+                stringBuilder.append(ls);
+            }
+
+            return stringBuilder.toString();
+        } finally {
+            bufferedReader.close();
+        }
     }
 
     public static String readLines() {
