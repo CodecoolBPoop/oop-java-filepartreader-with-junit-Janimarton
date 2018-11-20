@@ -1,12 +1,37 @@
+import java.io.*;
+
+
 public class FilePartReader {
 
     public FilePartReader() {
     }
 
-    public void setup(String filePath, Integer fromLine, Integer toLine) {
+    public void setup(String filePath, Integer fromLine, Integer toLine) throws IOException {
+        // there was a task: toLine is smaller than fromLine throw: IllegalArgumentException
+        // there was a task: if fromLine is smaller than 1 throw: IllegalArgumentException
 
-        // TODO: 2018.11.19. if: toLine is smaller than fromLine throw: IllegalArgumentException
-        // TODO: 2018.11.19. if fromLine is smaller than 1 throw: IllegalArgumentException
+
+        if (toLine < fromLine) throw new IllegalArgumentException("toLine cannot be lower than fromLine");
+        if (fromLine < 1) throw new IllegalArgumentException("fromLine cannot be lower than 1");
+
+
+        File file = new File(filePath);
+        BufferedReader bufferedReader = null;
+        try {
+            bufferedReader = new BufferedReader(new FileReader(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String line;
+        int lineCounter = 0;
+        while ((line = bufferedReader.readLine()) != null && toLine >= fromLine) {
+            lineCounter++;
+            if (lineCounter > fromLine){
+                System.out.println(line + "\n");
+            }
+        }
+
 
     }
 
