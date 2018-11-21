@@ -58,5 +58,12 @@ class FilePartReaderTest {
         System.out.println(FilePartReader.readLines(theLettersTestFilePath, 1, 5));
     }
 
+    @Test
+    public void testReadReturnedString() throws IOException {
+
+        assertTrue(FilePartReader.read(theLettersTestFilePath).getClass().getName().equals("java.lang.String"));
+        assertFalse(!(FilePartReader.read(theLettersTestFilePath).getClass().getName().equals("java.lang.String")));
+    }
+
 
 }
