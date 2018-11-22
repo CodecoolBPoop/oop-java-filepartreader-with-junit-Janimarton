@@ -27,11 +27,20 @@ public class FileWordAnalyzer {
 
     }
 
-    public List getWordsContainingSubstring(String subString) {
-        // TODO: 2018.11.19. returns the words which contains the subString
-        //        FilePartReader.readLines();
+    public List getWordsContainingSubstring(String subString, String filePath) throws IOException {
+        // there was a task: 2018.11.19. returns the words which contains the subString
 
         ArrayList resultList = new ArrayList();
+
+        String readedFile = FilePartReader.read(filePath);
+        String[] splitedReadedFile = readedFile.split("\\s+");
+
+        for (int i = 0; i < splitedReadedFile.length; i++) {
+            if (splitedReadedFile[i].contains(subString)) {
+                resultList.add(splitedReadedFile[i]);
+            }
+        }
+
         return resultList;
     }
 
