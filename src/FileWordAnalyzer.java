@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class FileWordAnalyzer {
 
@@ -44,12 +46,28 @@ public class FileWordAnalyzer {
         return resultList;
     }
 
-    public List getStringsWhichPalindromes() {
-        // TODO: 2018.11.19. returns the words from the String which are palindrome
-        //        FilePartReader.readLines();
+    public List getStringsWhichPalindromes(String filePath) throws IOException {
+        // there was a task: 2018.11.19. returns the words from the String which are palindrome
 
-        ArrayList palindromeList = new ArrayList();
-        return palindromeList;
+        ArrayList<String> palindromeList = new ArrayList<>();
+        ArrayList<String> testList = new ArrayList<>();
+
+
+        String rawReadedFile = FilePartReader.read(filePath);
+        String readedFile = rawReadedFile.replaceAll("[-+.^:,]", "");
+        String[] temporary = readedFile.split("\\s");
+        for (String word : temporary) {
+            palindromeList.add(word);
+        }
+
+
+        for (String word : palindromeList) {
+            if ((word.equals(new StringBuffer(word).reverse().toString()))) {
+                testList.add(word);
+            }
+        }
+
+        return testList;
     }
 
 
